@@ -117,26 +117,20 @@ namespace GetTextFromPDFToExcel
                                 break;
                             }
                         }
+                        Console.WriteLine("Write this info to excel?");
+                        if(char.ToUpper(Console.ReadKey(true).KeyChar) == 'Y')
+                        {
+                            if (ConvertToExcel(dirWithPDF.DirPath, dirWithPDF.DirPath + "OutputText.txt"))
+                            {
+                                Console.WriteLine("Success!");
+                                Console.ReadKey();
+                            }
+                        }
+                            
                     }
                 }
             }
         }
-
-        public static bool WriteTextToFile(string path, string textToWrite)
-        {
-            try
-            {
-                File.WriteAllText($"{path}\\OutputText.txt", textToWrite);
-                return true;
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Exception caught.");
-                return false;
-            }
-            
-        }
-
         private static void DisplayHeader()
         {
             Console.WriteLine("This program is for writing text frrom PDF files into Excel.");
